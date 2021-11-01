@@ -1,9 +1,14 @@
 class Main:
     def __call__(self, tasks):
+        self.IsStopped = False
         # Основной цикл
-        while True:
+        while not self.IsStopped:
             # Основная функция
             self.main(tasks)
+
+            if self.IsStopped:
+                break
+
             value = input("Введите 'yes' или 'y', чтобы повторить программу, а для выхода нажмите Enter: ")
             if value != 'y' and value != 'yes':
                 break
@@ -12,7 +17,7 @@ class Main:
 
     def main(self, tuple):
         i=0
-        while len(tuple)>i:
+        while len(tuple)>i and not self.IsStopped:
             if not isinstance(tuple[i], dict):
                 self.main(tuple[i])
                 i+=1
@@ -81,6 +86,8 @@ class Main:
                 elif e.args[0]=="ValueIsNull":
                     i-=1
                     print("Некорректное значение, оно не должно быть равно нулю, пожалуйста повторите ввод!") 
+                elif e.args[0]=="ProgramStop":
+                    self.IsStopped=True
                 else:
                     print("Ошибка в конфигурации: "+e)               
                 continue

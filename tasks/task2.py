@@ -1,7 +1,8 @@
 class Main:
     def __call__(self):
 
-        config = (  ({"in":"Введите значение числителя: ", "def":self.FuncSetX, "type": {int,float}}),
+        config = (  ({"out":"Добавление товара в программу..."}),
+                    ({"in":"Введите значение числителя: ", "def":self.FuncSetX, "type": {int,float}}),
                     ({"in":"Введите значение знаменателя: ", "out":"Результат = {0}", "def":self.FuncSetY, "type": {int,float}}))
         return config
 
