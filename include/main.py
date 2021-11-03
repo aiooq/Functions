@@ -41,24 +41,47 @@ class Main:
                         for item in type_value:
                             try:
                                 if item == str:
-                                    try:
-                                        float(value)
-                                        continue
-                                    except ValueError:
-                                        if value.isnumeric():
+                                    if len(type_value)==1:
+                                        try:
+                                            float(value)
                                             continue
-
-                                elif item == int:
-                                    if not value.isnumeric():
-                                        continue
-                                value=item(value)
-                                result = True
-                                break
+                                        except ValueError:
+                                            if value.isnumeric():
+                                                continue
+                                    else:
+                                        value=item(value)
+                                        result = True
+                                        break
                             except:
                                 continue
-
+                        if not result:
+                            for item in type_value:
+                                try:
+                                    if item == float:
+                                        if len(type_value)==1:
+                                            if value.isnumeric():
+                                                continue
+                                    elif item == int:
+                                        if len(type_value)==1:
+                                            try:
+                                                if value[0]=='-':
+                                                    if not value[1:len(value)].isnumeric():
+                                                        continue
+                                                elif not value.isnumeric():
+                                                    continue
+                                            except ValueError:
+                                                    continue
+                                        else:
+                                            continue
+                                    value=item(value)
+                                    result = True
+                                    break
+                                except:
+                                    continue
                         if not result:
                             raise Exception()
+                        #else:
+                        #    value=item(value)
                     except:
                         print("Некорректное значение, ожидается {0}, пожалуйста повторите ввод!".format(tuple[i]["type"]))
                         continue
@@ -75,6 +98,9 @@ class Main:
                 if e.args[0]=="PositiveNumber":
                     i-=1
                     print("Некорректное значение, ожидается положительное число, пожалуйста повторите ввод!")
+                elif e.args[0]=="NegativeNumber":
+                    i-=1
+                    print("Некорректное значение, ожидается отрицательное число, пожалуйста повторите ввод!")                    
                 elif e.args[0]=="StrIsNotNumeric":
                     i-=1
                     print("Некорректное значение, ожидается число, пожалуйста повторите ввод!")
