@@ -63,7 +63,8 @@ class Main:
                         print("Некорректное значение, ожидается {0}, пожалуйста повторите ввод!".format(tuple[i]["type"]))
                         continue
             elif "out" in tuple[i]:
-                value = tuple[i]["out"]
+                out = tuple[i]["out"]
+                value = out
 
             try:
                 if "def" in tuple[i]:
