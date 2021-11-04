@@ -59,7 +59,7 @@ class Main:
                                 try:
                                     if item == float:
                                         if len(type_value)==1:
-                                            if len(value>0):
+                                            if len(value)>0:
                                                 if value[0]=='-':
                                                         if value[1:len(value)].isnumeric():
                                                             continue
@@ -69,7 +69,7 @@ class Main:
                                     elif item == int:
                                         if len(type_value)==1:
                                             try:
-                                                if len(value>0):
+                                                if len(value)>0:
                                                     if value[0]=='-':
                                                         if not value[1:len(value)].isnumeric():
                                                             continue

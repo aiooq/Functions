@@ -10,7 +10,7 @@ class Main:
         self.sum=0
 
     def __call__(self):
-        config = (({"in":"Введите строку чисел, разделенных пробелом: ","out":"Сумма чисел = {0}", "def":self.FuncSum}))
+        config = (({"in":"Введите строку чисел, разделенных пробелом (или все кроме числа для выхода): ","out":"Сумма чисел = {0}", "def":self.FuncSum}))
         return config 
 
     def FuncSum(self, value, out):
