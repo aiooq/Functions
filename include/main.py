@@ -59,16 +59,22 @@ class Main:
                                 try:
                                     if item == float:
                                         if len(type_value)==1:
-                                            if value.isnumeric():
-                                                continue
+                                            if len(value>0):
+                                                if value[0]=='-':
+                                                        if value[1:len(value)].isnumeric():
+                                                            continue
+                                                else:
+                                                    if value.isnumeric():
+                                                        continue
                                     elif item == int:
                                         if len(type_value)==1:
                                             try:
-                                                if value[0]=='-':
-                                                    if not value[1:len(value)].isnumeric():
+                                                if len(value>0):
+                                                    if value[0]=='-':
+                                                        if not value[1:len(value)].isnumeric():
+                                                            continue
+                                                    elif not value.isnumeric():
                                                         continue
-                                                elif not value.isnumeric():
-                                                    continue
                                             except ValueError:
                                                     continue
                                         else:
@@ -80,8 +86,6 @@ class Main:
                                     continue
                         if not result:
                             raise Exception()
-                        #else:
-                        #    value=item(value)
                     except:
                         print("Некорректное значение, ожидается {0}, пожалуйста повторите ввод!".format(tuple[i]["type"]))
                         continue
@@ -112,9 +116,11 @@ class Main:
                     print("Значение вне диапазона, пожалуйста повторите ввод!") 
                 elif e.args[0]=="ValueIsNull":
                     i-=1
-                    print("Некорректное значение, оно не должно быть равно нулю, пожалуйста повторите ввод!") 
+                    print("Некорректное значение, оно не должно быть равно нулю, пожалуйста повторите ввод!")
+                elif e.args[0]=="Repeat":
+                    i-=1                    
                 elif e.args[0]=="ProgramStop":
-                    self.IsStopped=True
+                    self.IsStopped=True                
                 else:
                     print("Ошибка в конфигурации: "+e)               
                 continue

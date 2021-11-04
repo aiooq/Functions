@@ -26,7 +26,7 @@ try:
 
     try:
         from tasks.task4 import Main as task4
-        tasks.append(task4()())
+        #tasks.append(task4()())
     except ImportError:
         pass
 
