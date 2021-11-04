@@ -32,7 +32,7 @@ try:
 
     try:
         from tasks.task5 import Main as task5
-        tasks.append(task5()())
+        #tasks.append(task5()())
     except ImportError:
         pass
 
